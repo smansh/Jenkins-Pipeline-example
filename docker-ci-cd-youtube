@@ -15,13 +15,14 @@ node{
         sh "docker login -u smansh2018 -p ${dockerHubPwd}"
      }
      sh 'docker push smansh2018/my-app:2.0.0'
-     }
+   }
      stage('Run Container on Dev Server'){
-     sh 'docker run -p 8080:8080 -d --name my-app smansh2018/my-app:2.0.0'
-     /* def dockerRun = 'docker run -p 8080:8080 -d --name my-app kammana/my-app:2.0.0' */
-     /* sshagent(['dev-server']) { */
-       /* sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}" */
-     /* } */
+     /* sh 'docker run -p 8080:8080 -d --name my-app smansh2018/my-app:2.0.0'*/
+     def dockerRun = 'docker run -p 8080:8080 -d --name my-app smansh2018/my-app:2.0.0' 
+     sshagent(['dev-server']) { 
+        sh "ssh -o StrictHostKeyChecking=no root@192.168.43.253 ${dockerRun}"
+      } 
+     
+         
      }
    }
-}
