@@ -7,4 +7,12 @@ node {
       def mvnHome = tool name: 'Maven_home', type: 'maven'
        sh "${mvnHome}/bin/mvn package"
        }
+	//Add Email Notification
+	stage('Email-Notification'){
+	
+		mail bcc: '', body: '''Hi,
+Welcome to Jenkins job Email Alert
+Thanks,
+Manoj''', cc: '', from: '', replyTo: '', subject: 'Jenkinsfile-Build-Pipeline', to: 'manoj.himt@gmail.com'
+	}
    }
