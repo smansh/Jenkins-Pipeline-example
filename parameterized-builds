@@ -1,0 +1,8 @@
+properties([[$class: 'JiraProjectProperty'], parameters([choice(choices: 'master\nfeature-1\nfeature-2', description: 'Select the Branch to Build', name: 'branch')])])
+node{
+
+    stage('Scm Checkout'){
+        echo "Pulling changes from the branch ${params.branch}"
+        git url :'https://github.com/javahometec/my-app',branch:"${params.branch}"
+    }
+}
