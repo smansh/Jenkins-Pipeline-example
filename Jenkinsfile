@@ -1,6 +1,6 @@
 node {
    stage('SCM Checkout'){
-	git: 'https://github.com/smansh/myweb'   
+	git: 'https://github.com/smansh/Jenkins-Pipeline-example'   
    }
    stage('Compile Package'){
    //Get MavenHome path
