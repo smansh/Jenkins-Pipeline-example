@@ -1,0 +1,12 @@
+node{
+ parallel firstBranch: {
+        stage('one'){
+           git url: 'http://github.com/smansh/Jenkins-Pipeline-example', branch: 'master' 
+        }
+    }, secondBranch: {
+       stage('Two'){
+           git url: 'http://github.com/smansh/Jenkins-Pipeline-example', branch: 'feature-1'  
+       }
+    },
+    failFast: true
+}
