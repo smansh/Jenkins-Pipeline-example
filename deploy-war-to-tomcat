@@ -7,6 +7,13 @@ node {
       def mvnHome = tool name: 'Maven_home', type: 'maven'
        sh "${mvnHome}/bin/mvn package"
        }
+       
+   stage('Deploy to Tomcat'){
+       sshagent(['tomcat-server']) {
+         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.43.68:/opt/tomcat/apache-tomcat-8.5.53/webapps/'
+
+}
+}
 	//Add Email Notification
 	stage('Email-Notification'){
 	
