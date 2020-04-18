@@ -11,9 +11,12 @@ node {
    stage('Deploy to Tomcat'){
        sshagent(['tomcat-server']) {
          sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.43.68:/opt/tomcat/apache-tomcat-8.5.53/webapps/'
-
 }
 }
+slackSend channel: '#jenkins-build',
+				  color: 'good',
+				  message: "Job -  ${env.JOB_NAME}, Completed successfully Build URL is ${env.BUILD_URL}"
+				  
 	//Add Email Notification
 	stage('Email-Notification'){
 	
