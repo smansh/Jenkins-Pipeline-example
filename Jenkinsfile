@@ -15,8 +15,13 @@ Welcome to Jenkins job Email Alert
 Thanks,
 Manoj''', cc: '', from: '', replyTo: '', subject: 'Jenkinsfile-Build-Pipeline', to: 'manoj.himt@gmail.com'
 	}
-	//Slack Email Notification
+	//Slack  Notification
 	stage('Slack-Notification'){
-	slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-pipeline-demo', color: 'good', message: 'Welcome to Jenkins Slack !!!',RILnKY7pWzV6oYxLhiGLEU8o: 'smansh-jenkinsteam'
+	slackSend baseUrl: 'https://hooks.slack.com/services/',
+	channel: 'jenkins-pipeline-demo', 
+	color: 'good', 
+	message: 'Welcome to Jenkins Slack Build SucessFully !!!',
+	teamDomain:'smansh-jenkinsteam',
+	tokenCredentialId: 'slack-notify'
 	}
    }
