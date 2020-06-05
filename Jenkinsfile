@@ -17,6 +17,6 @@ Manoj''', cc: '', from: '', replyTo: '', subject: 'Jenkinsfile-Build-Pipeline', 
 	}
 	//Slack Email Notification
 	stage('Slack-Notification'){
-	slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-pipeline-demo', color: 'good', message: 'Welcome to Jenkins Slack !!!',mxRTEJDQA5gwZPZlJyIN01XO: 'Smansh-JenkinsTeam'
+	slackSend baseUrl: 'https://hooks.slack.com/services/', channel: 'jenkins-pipeline-demo', color: 'good', message: 'Welcome to Jenkins Slack !!!',oxV6pU529LC2DQLAhr0Gt8aN: 'Smansh-JenkinsTeam'
 	}
    }
