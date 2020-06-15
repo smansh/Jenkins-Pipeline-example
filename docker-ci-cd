@@ -19,8 +19,8 @@ node{
    
     stage('Remove Previous Container'){
 	try{
-		def dockerRm = 'docker rm -f smansh2018/my-app:2.0.1'
-		sshagent(['docker-dev']) {
+		def dockerRm = 'docker rm --force my-app'
+		sshagent(['dev-server']) {
 			sh "ssh -o StrictHostKeyChecking=no root@192.168.43.122 ${dockerRm}"
 		}
 	}catch(error){
