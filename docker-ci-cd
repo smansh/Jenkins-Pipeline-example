@@ -1,1 +1,40 @@
-nded
+node{
+     stage('SCM Checkout'){
+       git credentialsId: 'git-creds', url: 'https://github.com/smansh/Jenkins-Pipeline-example.git'
+   }
+   stage('Mvn Package'){
+     def mvnHome = tool name: 'Maven_home', type: 'maven'
+     def mvnCMD = "${mvnHome}/bin/mvn"
+     sh "${mvnCMD} clean package"
+   }
+   stage('Build Docker Image'){
+     sh 'docker build -t smansh2018/my-app:2.0.1 .'
+   }
+   stage('Push Docker Image'){
+     withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+        sh "docker login -u smansh2018 -p ${dockerHubPwd}"
+     }
+     sh 'docker push smansh2018/my-app:2.0.1'
+   }
+   
+    stage('Remove Previous Container'){
+	try{
+		def dockerRm = 'docker rm -f myweb'
+		sshagent(['docker-dev']) {
+			sh "ssh -o StrictHostKeyChecking=no root@192.168.43.122 ${dockerRm}"
+		}
+	}catch(error){
+		//  do nothing if there is an exception
+	}
+ }
+ 
+     stage('Run Container on Dev Server'){
+     /* sh 'docker run -p 8080:8080 -d --name my-app smansh2018/my-app:2.0.1'*/
+     def dockerRun = 'docker run -p 8080:8080 -d --name my-app smansh2018/my-app:2.0.1' 
+     sshagent(['dev-server']) { 
+        sh "ssh -o StrictHostKeyChecking=no root@192.168.43.122 ${dockerRun}"
+      } 
+     
+         
+     }
+   }
