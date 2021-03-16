@@ -15,13 +15,13 @@ node {
 }
 slackSend channel: 'jenkins-pipeline-demo',
 				  color: 'good',
-				  message: "Job -  ${env.JOB_NAME}, Completed successfully Build URL is ${env.BUILD_URL}"
+				  message: "Job -  ${env.JOB_NAME}, Build Number-${env.BUILD_NUMBER} Completed successfully Build URL is ${env.BUILD_URL}"
 				  
 	//Add Email Notification
 	stage('Email-Notification'){
 	
 		mail bcc: '', body: '''Hi,
-Welcome to Jenkins job Email Alert
+Welcome to Jenkins job "Job -  ${env.JOB_NAME}, Build Number-${env.BUILD_NUMBER} Completed successfully Build URL is ${env.BUILD_URL}"
 Thanks,
 Manoj''', cc: '', from: '', replyTo: '', subject: 'Jenkinsfile-Build-Pipeline', to: 'manoj.himt@gmail.com'
 	}
