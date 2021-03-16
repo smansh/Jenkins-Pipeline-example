@@ -20,8 +20,8 @@ slackSend channel: 'jenkins-pipeline-demo',
 	//Add Email Notification
 	stage('Email-Notification'){
 	
-		mail bcc: '', body: '''Hi,
-Welcome to Jenkins job "Job -  ${env.JOB_NAME}, Build Number-${env.BUILD_NUMBER} Completed successfully Build URL is ${env.BUILD_URL}"
+		mail bcc: 'manojs@techroutes.com', body: '''Hi,
+Welcome to Jenkins Job -  ${env.JOB_NAME}, Build Number-${env.BUILD_NUMBER} Completed successfully Build URL is ${env.BUILD_URL}
 Thanks,
 Manoj''', cc: '', from: '', replyTo: '', subject: 'Jenkinsfile-Build-Pipeline', to: 'manoj.himt@gmail.com'
 	}
