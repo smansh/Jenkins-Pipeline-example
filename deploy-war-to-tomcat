@@ -10,7 +10,7 @@ node {
        
    stage('Deploy to Tomcat'){
        sshagent(['tomcat-server']) {
-         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.1.182:/opt/tomcat/webapps/'
+         sh 'scp -o StrictHostKeyChecking=no target/*.war root@192.168.43.122:/opt/tomcat/webapps/'
 }
 }
 slackSend channel: 'jenkins-pipeline-demo',
